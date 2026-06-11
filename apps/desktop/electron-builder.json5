@@ -1,0 +1,53 @@
+{
+  "productName": "NovelForge",
+  "appId": "local.novelforge.desktop",
+  "asar": true,
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "assets/**/*",
+    "dist/**/*",
+    "dist-electron/**/*",
+    "migrations/**/*",
+    ".env.production"
+  ],
+  "electronDownload": {
+    "mirror": "https://npmmirror.com/mirrors/electron/"
+  },
+  "mac": {
+    "icon": "assets/icon/icon.icns",
+    "target": ["dmg"]
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 410,
+        "y": 150,
+        "type": "link",
+        "path": "/Applications"
+      },
+      {
+        "x": 130,
+        "y": 150,
+        "type": "file"
+      }
+    ]
+  },
+  "win": {
+    "icon": "assets/icon/tray.png",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "artifactName": "${productName}_${version}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}

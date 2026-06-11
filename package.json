@@ -1,0 +1,20 @@
+{
+  "name": "novel-forge-workspace",
+  "version": "1.0.0",
+  "description": "Workspace for NovelForge, a local long-form novel story simulation system.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm --dir apps/desktop dev",
+    "build": "pnpm --dir apps/desktop build",
+    "type-check": "pnpm --dir apps/desktop type-check"
+  },
+  "keywords": [
+    "novel",
+    "electron",
+    "mcp",
+    "sqlite"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.3"
+}

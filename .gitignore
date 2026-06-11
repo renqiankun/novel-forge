@@ -1,0 +1,9 @@
+node_modules
+apps/desktop/build
+apps/desktop/bin
+apps/desktop/dist
+apps/desktop/dist-electron
+apps/desktop/release
+apps/desktop/auto-imports.d.ts
+apps/desktop/components.d.ts
+.claude/worktrees/

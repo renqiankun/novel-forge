@@ -1,0 +1,188 @@
+// 全屏时
+:not(:root):fullscreen::backdrop {
+  // background: url('@/assets/imgs/layout-bg.png') no-repeat center;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(24, 46, 75, 1), rgba(6, 10, 19, 1) 100%);
+  background-size: cover;
+}
+
+/* ─── BASE ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Noto Sans SC', 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  background:
+    radial-gradient(ellipse 900px 640px at 18% 0%, var(--bg-a) 0%, transparent 68%),
+    radial-gradient(ellipse 700px 500px at 85% 100%, var(--bg-b) 0%, transparent 65%),
+    radial-gradient(ellipse 500px 400px at 55% 42%, var(--bg-c) 0%, transparent 70%), var(--bg);
+  //  background:
+  //   radial-gradient(ellipse 42% 42% at 20% 8%, #BADAF888 0%, #BADAF800 100%),
+  //   radial-gradient(ellipse 50% 50% at 84% 10%, #B2D8FF66 0%, #B2D8FF00 100%),
+  //   linear-gradient(160deg, #DCE8F2 0%, #E6EFF7 35%, #DAEAF0 70%, #E2ECF5 100%);
+
+    background-attachment: fixed;
+  color: var(--t2);
+  -webkit-font-smoothing: antialiased;
+
+  transition:
+    background 0.28s ease,
+    color 0.18s ease;
+}
+input::placeholder {
+  font-family: 'Noto Sans SC', 'DM Sans', system-ui, sans-serif;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.el-input {
+  width: 100%;
+}
+.el-select {
+  width: 100%;
+}
+.el-date-editor {
+  --el-date-editor-width: 100%;
+  min-width: 0px;
+}
+.el-input-number {
+  width: 100%;
+}
+
+.text1 {
+  color: var(--t1);
+}
+.text2 {
+  color: var(--t2);
+}
+.text3 {
+  color: var(--t3);
+}
+.text4 {
+  color: var(--t4);
+}
+.text5 {
+  color: var(--t5);
+}
+.text6 {
+  color: var(--t6);
+}
+
+.el-button {
+  &:not(.is-text, .is-plain, :disabled) {
+    &.el-button--primary {
+      background: linear-gradient(135deg, #1d56d4, #3b8ef3);
+      &:hover {
+        filter: brightness(1.08);
+      }
+      &:active {
+        filter: brightness(0.92);
+      }
+    }
+    &.el-button--success {
+      background: linear-gradient(135deg, #059669, #10b981);
+      &:hover {
+        filter: brightness(1.08);
+      }
+      &:active {
+        filter: brightness(0.92);
+      }
+    }
+  }
+}
+
+.glass-card {
+  background: var(--glass-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--bd-card);
+  box-shadow: var(--sh-card);
+  border-radius: 12px;
+  transition: background 0.14s;
+  &.active {
+    background: var(--step-card-active-bg);
+    border-color: var(--step-card-active-bd);
+    box-shadow: var(--sh-on);
+  }
+}
+
+.el-form-item--label-top.el-form-item .el-form-item__label {
+  line-height: 16px;
+  margin-bottom: 4px;
+}
+
+.mx-icon-placeholder {
+  & > .icon {
+    fill: currentColor;
+  }
+}
+
+// 暗黑主题渐变
+::view-transition-new(root),
+::view-transition-old(root) {
+  /* 关闭默认动画，否则影响自定义动画的执行 */
+  animation: none !important;
+}
+
+/*黑暗模式下，让旧节点的层级变高，否则会导致动画出不来*/
+.dark::view-transition-old(root) {
+  z-index: 100;
+}
+
+
+.el-dialog {
+  display: flex;
+  flex-direction: column;
+  // margin: 0 !important;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%); /*height:600px;*/
+  max-height: calc(100% - 30px);
+  max-width: calc(100% - 3px);
+}
+.el-dialog .el-dialog__body {
+  flex: 1;
+  overflow: auto;
+}
+@keyframes model-in {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(-50% - 20px));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+@keyframes model-out {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(calc(-50% - 20px));
+  }
+}

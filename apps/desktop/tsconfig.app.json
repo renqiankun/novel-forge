@@ -1,0 +1,29 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "global.d.ts",
+    "electron/shared/**/*.ts",
+    "renderer/App.vue",
+    "renderer/main.ts",
+    "renderer/api/**/*.ts",
+    "renderer/hooks/**/*.ts",
+    "renderer/layout/index.vue",
+    "renderer/layout/nav-bar/index.vue",
+    "renderer/layout/side-bar/index.vue",
+    "renderer/layout/global-status-bar/index.vue",
+    "renderer/router/**/*.ts",
+    "renderer/theme/**/*.scss",
+    "renderer/theme/**/*.css",
+    "renderer/views/**/*.vue"
+  ],
+  "exclude": ["renderer/**/__tests__/*"],
+  "compilerOptions": {
+    "types": ["element-plus/global"],
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@/*": ["./renderer/*"]
+    },
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
+  }
+}
