@@ -128,6 +128,8 @@ Detail surfaces are not persistent layout columns.
 6. App creates visible nodes and write logs.
 7. Human confirms only high-impact changes or final version selection.
 
+Task packages are managed in a visible queue, not only as individual graph nodes. The queue determines the recommended next package to hand to external AI, while blocked packages remain visible but paused.
+
 Generation scopes:
 
 - Next chapter: AI writes or plans the immediate next chapter and returns candidate versions, checks, candidate facts, and chapter summary updates.
@@ -135,6 +137,39 @@ Generation scopes:
 - Next 100 chapters: AI primarily builds or revises macro-outline, volume arcs, foreshadow schedules, pressure curves, and risk reports; it should not overwrite chapter text by default.
 
 The workbench must make this clear in the first viewport through an AI progression control surface, not only inside a hidden dialog.
+
+### Task Package Queue Flow
+
+The workbench must provide a first-class task package queue.
+
+Visible entry points:
+
+- Left dock AI task package icon.
+- Canvas toolbar task package tab.
+- AI progression control surface, with a compact first-viewport queue preview.
+- AI task node detail.
+
+Queue list fields:
+
+- Priority/order.
+- Task title.
+- Target scope: next chapter, next 10 chapters, next 100 chapters, rewrite target, style target, or audit target.
+- Status: draft, ready, queued, running, paused, write_pending, completed, archived.
+- Context mode and review mode.
+- Checkpoint rule.
+- Blocking dependency, if any.
+- Latest write-back summary.
+- Primary action: copy MCP task package, view Context Pack, view write-back, pause/resume, archive.
+
+Ordering behavior:
+
+- Users can reorder ready, draft, and queued task packages by drag handle or up/down controls.
+- The order determines the recommended next executable task package for external AI.
+- Reordering does not bypass blocking dependencies; a paused task can be placed high in the list, but it must remain paused until its confirmation gate is resolved.
+- Running, completed, and archived tasks should not be silently moved into the executable queue.
+- Saving the queue order should create a write log entry so external AI and audit surfaces can explain why a task became next.
+
+The compact first-viewport preview should show the first three task packages and an obvious "task package queue / sortable" control. The full list opens in a dialog or drawer-style overlay, not a permanent wide sidebar.
 
 ### Version Confirmation Flow
 
@@ -376,12 +411,50 @@ Result:
 - Creates a task record.
 - Exposes an AI task package.
 - Adds a task node to the canvas.
+- Adds the task package to the task package queue.
 - Adds a write log entry.
 
 Copy tone:
 
 - The dialog should make clear that real generation happens in the external AI host through MCP.
 - The dialog should make clear that AI outputs remain candidates until a confirmation gate applies them.
+
+### 5a. Task Package Queue Dialog
+
+Purpose: inspect and reorder AI task packages before handing the next package to external AI.
+
+Trigger:
+
+- Left dock AI task package icon.
+- Toolbar `Task Package` tab.
+- AI progression control `Task Package Queue` button.
+- AI task node details.
+
+Layout:
+
+- Dialog width: `min(1060px, 94vw)`.
+- Dense sortable list/table.
+- Each row contains priority, title, target, status, checkpoint, blocking dependency, and order controls.
+- Secondary side panels or inline rows show selected task details, Context Pack action, and write-back summary.
+
+Actions:
+
+- Move task up.
+- Move task down.
+- Drag to reorder.
+- Copy MCP task package.
+- Open Context Pack.
+- View write-back.
+- Pause or resume.
+- Archive.
+
+Guardrails:
+
+- Reordering changes recommendation order, not execution by itself.
+- Paused or blocked tasks remain blocked even if moved to the top.
+- Queue order save must be explicit.
+- Queue order changes should be logged.
+- External AI should be able to read the queue order through MCP.
 
 ### 6. MCP Status Dialog
 
@@ -585,7 +658,7 @@ The interface should map to current project modules and mock API surfaces:
 
 - Canvas: `ProjectCanvas`, `ProjectCanvasNode`, `ProjectCanvasEdge`
 - Node detail: `CanvasNodeDetail`
-- Task package: `AiTask`, `AiTaskPackage`
+- Task package: `AiTask`, `AiTaskPackage`, task queue order
 - Context Pack: `ChapterContextPack`
 - Versioning: `ChapterVersion`, `RewriteTask`, `LocalCheckResult`
 - Outline: `OutlineNode`, `ProjectOutline`
@@ -657,6 +730,8 @@ The existing `project-canvas/index.vue` already contains many of the right flows
 - Left navigation is a compact icon dock, not a wide text sidebar.
 - Project title and progress are visible in a floating card.
 - Next chapter, next 10 chapters, and next 100 chapters AI progression controls are visible without hunting through module pages.
+- The task package queue is visible from the first viewport and from the dock/toolbar.
+- Task packages can be reordered by drag handle or up/down controls, with blocking states preserved.
 - A pending human confirmation queue is visible in the first viewport.
 - Right details are absent until a node/action is selected.
 - MCP status is visible in a short bottom bar.
