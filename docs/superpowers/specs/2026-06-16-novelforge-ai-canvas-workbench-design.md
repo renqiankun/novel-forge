@@ -181,6 +181,22 @@ Design constraints:
 - The floating project card can overlap empty canvas space but must not cover important selected nodes.
 - At 1400 x 750, users should see at least one volume, two chapter nodes, one task/version region, and one risk or pending review signal.
 
+Feature visibility rule:
+
+- The default canvas must not be a purely abstract node graph. It must also show core novel-planning information from the current project data model.
+- Overall project progress is first-screen information: current chapter, target chapter count, total progress percent, queued AI tasks, pending confirmations, and recent write-back.
+- Volume nodes or lanes should show volume progress, core conflict, target, expected chapter count, and main progress percent.
+- Chapter nodes should include enough body/planning information to recognize the story beat without opening a drawer:
+  - scene or location
+  - POV
+  - word count or target word count
+  - current emotion/tension
+  - key event
+  - short body excerpt, draft line, or writing target
+- Long-state highlights should be visible on the first screen when active: highest pressure value, nearest breakpoint, plot debt count, foreshadow count, and message/timeline warnings.
+- Style state should also be visible when active: active style profile, applied style assets, pending style extraction, and whether a style task is waiting for external AI write-back.
+- The first coded pass may choose either a free graph layout or a volume-lane layout, but it must preserve this information density.
+
 ### 2. Dock Expanded Flyout
 
 Purpose: provide module navigation without a wide persistent sidebar.
@@ -414,6 +430,8 @@ Purpose: manage the style context that external AI should absorb.
 Sections:
 
 - Active style profile.
+- Style extraction queue: source chapters, extraction target, current MCP task status, and expected write-back type.
+- Style application scope: current chapter, current volume, batch generation, or future Context Pack inclusion.
 - Style assets: project style, volume style, scene mode, character voice, dialogue sample, good sample, bad pattern, forbidden item.
 - Add/edit style asset form.
 - Character dialogue voice summary.
@@ -423,6 +441,7 @@ Behavior:
 - Activating a style profile changes the context pack.
 - New style assets can come from user input or external AI write-back.
 - Disabled assets stay in the library but are excluded from active context.
+- Applying a style asset should make the affected scope clear before future generation or rewriting uses it.
 
 ### 10. Audit And Risk Dialog
 
