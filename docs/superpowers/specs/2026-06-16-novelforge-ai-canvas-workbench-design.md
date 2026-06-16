@@ -120,12 +120,21 @@ Detail surfaces are not persistent layout columns.
 
 ### AI Task Flow
 
-1. User records a Codex task in the app.
-2. App stores task policy: target, context mode, review mode, candidate fact strategy, checkpoint interval, and auto-pause rule.
-3. App exposes an MCP-readable task package.
-4. External AI reads resources and writes back candidate versions, style assets, facts, or long-state updates.
-5. App creates visible nodes and write logs.
-6. Human confirms only high-impact changes or final version selection.
+1. User chooses a visible generation scope from the workbench: next chapter, next 10 chapters, or next 100 chapters.
+2. The app creates an MCP-readable task package; it does not generate text itself and does not become an AI chat panel.
+3. App stores task policy: target, context mode, review mode, candidate fact strategy, checkpoint interval, and auto-pause rule.
+4. App exposes an MCP-readable task package.
+5. External AI reads resources and writes back candidate versions, style assets, facts, or long-state updates.
+6. App creates visible nodes and write logs.
+7. Human confirms only high-impact changes or final version selection.
+
+Generation scopes:
+
+- Next chapter: AI writes or plans the immediate next chapter and returns candidate versions, checks, candidate facts, and chapter summary updates.
+- Next 10 chapters: AI primarily updates outline, chapter targets, continuity state, and optional candidate drafts; it must checkpoint before high-impact changes become authoritative.
+- Next 100 chapters: AI primarily builds or revises macro-outline, volume arcs, foreshadow schedules, pressure curves, and risk reports; it should not overwrite chapter text by default.
+
+The workbench must make this clear in the first viewport through an AI progression control surface, not only inside a hidden dialog.
 
 ### Version Confirmation Flow
 
@@ -135,6 +144,36 @@ Detail surfaces are not persistent layout columns.
 4. Local checks and candidate facts are visible beside the version list.
 5. User may apply candidate, request rewrite, archive candidate, or run local check.
 6. Applying a version updates the authoritative chapter state and write log.
+
+Final version selection is always a human confirmation gate. External AI may recommend a candidate, but it should write only candidate versions until the user applies one as the main chapter version.
+
+### Rewrite Flow
+
+Chapter rewriting must be typed before a task package is created. The first implementation should support these rewrite categories:
+
+- Style rewrite: preserve plot facts and scene outcome; change prose rhythm, density, atmosphere, and style-profile adherence.
+- Plot rewrite: allow event order, conflict strength, and cause/effect changes; must produce an impact report.
+- Dialogue rewrite: preserve scene result; adjust character voice, information reveal, subtext, and dialogue pacing.
+- Continuity repair: fix timeline, foreshadow, message, fact, motivation, or long-state inconsistencies.
+- Bridge rewrite: improve transition from previous chapter to next planned chapters.
+- Local expression rewrite: rewrite only selected fragments without changing the chapter structure.
+
+Rewrite tasks must produce a candidate version or candidate patch, not directly overwrite the authoritative version.
+
+### Manual Confirmation Flow
+
+The default canvas must show a visible "pending my confirmation" queue. It should not force users to inspect every node to learn what needs their decision.
+
+Confirmation categories:
+
+- Version finalization: choose which candidate becomes the authoritative chapter version.
+- Plot-impact decision: accept, reject, or return changes that affect pressure value, breakpoint, foreshadow payoff, character relationship, or volume arc.
+- Character style decision: confirm character voice rules such as dialogue restraint, vocabulary, emotional leakage, and explanation density.
+- Whole-book style decision: confirm which style profile enters future Context Packs for the whole book or volume.
+- Candidate fact decision: accept, reject, batch-settle, or return facts to AI.
+- Rewrite decision: send an issue back as style rewrite, plot rewrite, dialogue rewrite, continuity repair, bridge rewrite, or local expression rewrite.
+
+Queue rows should be labeled with short action semantics such as `must confirm`, `can batch`, `return to AI`, or `ready to finalize`. High-impact rows cannot be silently batch-settled.
 
 ### Pending Fact / Risk Flow
 
@@ -197,6 +236,13 @@ Feature visibility rule:
 - Long-state highlights should be visible on the first screen when active: highest pressure value, nearest breakpoint, plot debt count, foreshadow count, and message/timeline warnings.
 - Style state should also be visible when active: active style profile, applied style assets, pending style extraction, and whether a style task is waiting for external AI write-back.
 - The first coded pass should keep the free AI canvas layout with version, task, risk, and context nodes; the richer chapter information belongs inside the nodes and drawers.
+
+AI operation visibility rule:
+
+- The first viewport must expose how to ask AI to continue with the next chapter, next 10 chapters, or next 100 chapters.
+- The first viewport must expose what the human must confirm before the project state changes.
+- The user should be able to see, without opening a drawer, whether the next likely action is generation, rewriting, version finalization, style confirmation, fact confirmation, or outline review.
+- Generation controls create task packages for external AI; confirmation controls apply or reject local state changes after AI writes back.
 
 ### 2. Dock Expanded Flyout
 
@@ -309,7 +355,7 @@ Trigger:
 
 Form sections:
 
-- Target: next chapter, next 10 chapters, next 50 chapters, next 100 chapters, rewrite chapter, style adjustment, style extraction, style process.
+- Target: next chapter, next 10 chapters, next 100 chapters, rewrite chapter, style adjustment, style extraction, style process.
 - Target chapter when applicable.
 - Context mode: Lite, Full, Deep.
 - Review mode: token saver, balanced, strict.
@@ -318,6 +364,12 @@ Form sections:
 - Auto-pause rule: none, high risk, checkpoint, any issue.
 - Task title.
 - Instruction for external AI.
+
+Scope defaults:
+
+- Next chapter defaults to candidate text, chapter summary, and local check.
+- Next 10 chapters defaults to outline, chapter targets, continuity updates, candidate facts, and optional candidate text at checkpoint boundaries.
+- Next 100 chapters defaults to macro-outline, volume arcs, pressure curve, foreshadow schedule, style constraints, and risk report.
 
 Result:
 
@@ -329,6 +381,7 @@ Result:
 Copy tone:
 
 - The dialog should make clear that real generation happens in the external AI host through MCP.
+- The dialog should make clear that AI outputs remain candidates until a confirmation gate applies them.
 
 ### 6. MCP Status Dialog
 
@@ -407,6 +460,8 @@ Outline dialog:
 - Chapter goal/payoff.
 - Status badge per node.
 - Link from chapter outline node to real chapter when available.
+- Current plot summary for the active chapter window.
+- Volume view for current volume progress, target, conflict, expected chapter count, and risk.
 
 Long State dialog:
 
@@ -436,6 +491,8 @@ Sections:
 - Style assets: project style, volume style, scene mode, character voice, dialogue sample, good sample, bad pattern, forbidden item.
 - Add/edit style asset form.
 - Character dialogue voice summary.
+- Character style confirmation queue.
+- Whole-book style confirmation queue.
 
 Behavior:
 
@@ -443,6 +500,7 @@ Behavior:
 - New style assets can come from user input or external AI write-back.
 - Disabled assets stay in the library but are excluded from active context.
 - Applying a style asset should make the affected scope clear before future generation or rewriting uses it.
+- Character voice and whole-book style are separate confirmation decisions. Confirming one must not imply confirming the other.
 
 ### 10. Audit And Risk Dialog
 
@@ -463,6 +521,10 @@ Decision types:
 - Resolve audit report.
 - Mark issue for Codex.
 - Request rewrite.
+- Confirm version.
+- Confirm character style.
+- Confirm whole-book style.
+- Confirm or reject plot-impact change.
 
 Guardrails:
 
@@ -594,10 +656,15 @@ The existing `project-canvas/index.vue` already contains many of the right flows
 - At 1400 x 750, the canvas is the dominant surface.
 - Left navigation is a compact icon dock, not a wide text sidebar.
 - Project title and progress are visible in a floating card.
+- Next chapter, next 10 chapters, and next 100 chapters AI progression controls are visible without hunting through module pages.
+- A pending human confirmation queue is visible in the first viewport.
 - Right details are absent until a node/action is selected.
 - MCP status is visible in a short bottom bar.
 - All project modules remain reachable from dock or toolbar tabs.
 - Candidate versions can be compared and finalized without opening a full manuscript editor.
+- Rewrite choices are typed as style, plot, dialogue, continuity, bridge, or local expression before task package creation.
+- Character style confirmation and whole-book style confirmation are separate visible decisions.
+- Current plot summary, outline preview, and volume view are reachable from the workbench.
 - High-risk facts and audit issues require explicit confirmation.
 - The design matches warm paper manuscript desk styling.
 - The interface communicates external-AI-first workflow within the first viewport.
