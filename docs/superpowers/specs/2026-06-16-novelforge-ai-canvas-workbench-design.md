@@ -143,6 +143,360 @@ Detail surfaces are not persistent layout columns.
 3. High-risk or conflicting facts require explicit confirmation.
 4. Confirmed facts become authoritative world facts or locked facts according to risk policy.
 
+## Screen-Level UI Specification
+
+This section defines the actual interface surfaces before implementation. It is the source of truth for the first coded pass.
+
+### 1. Default AI Canvas Workbench
+
+Purpose: show the project as an AI-operable story state graph.
+
+Persistent regions:
+
+- 68 px left dock.
+- Full canvas area.
+- Floating project card.
+- Canvas toolbar.
+- 28 px MCP status bar.
+
+Visible information:
+
+- Project title and genre in the floating card.
+- Current chapter progress, target chapter count, queued tasks, pending confirmations.
+- Graph scope and module tabs in the toolbar.
+- Volume, chapter, version, AI task, and risk nodes in the canvas.
+- Latest MCP/write-back state in the status bar.
+
+Primary actions:
+
+- Record AI task.
+- Refresh canvas.
+- Fit canvas.
+- Open module dialogs from toolbar tabs.
+- Select graph node.
+
+Design constraints:
+
+- The canvas must feel like the main screen, not like content inside a dashboard card.
+- The floating project card can overlap empty canvas space but must not cover important selected nodes.
+- At 1400 x 750, users should see at least one volume, two chapter nodes, one task/version region, and one risk or pending review signal.
+
+### 2. Dock Expanded Flyout
+
+Purpose: provide module navigation without a wide persistent sidebar.
+
+Trigger:
+
+- Hover, click, or keyboard focus on dock group button.
+
+Content:
+
+- 2-column compact menu.
+- Canvas, MCP Status, Task Package, Context Pack, Outline, Long State, Style, Audit, Snapshots.
+- Optional counters for pending or high-risk states, capped to short tokens such as `5`, `12`, or `!`.
+
+Behavior:
+
+- Closes on outside click, Escape, or selection.
+- Selecting a module opens the matching dialog or sets the route query panel.
+- It never changes the project screen into a separate full-width module page during the main workbench flow.
+
+### 3. Chapter Detail Drawer
+
+Purpose: inspect the selected chapter enough to decide what AI-facing action comes next.
+
+Trigger:
+
+- Click a chapter node.
+
+Placement:
+
+- Right side drawer, about 430 px wide on the target viewport.
+- Overlay, not a permanent column.
+
+Header:
+
+- Node kind label.
+- Chapter title.
+- Chapter status and subtitle.
+
+Actions:
+
+- Copy Codex prompt.
+- Open Context Pack.
+- Open rewrite conditions.
+- Open version compare/finalize.
+- Run local check.
+
+Body sections:
+
+- Chapter metrics: status, word count, version count, latest check level.
+- Outline contract: goal, conflict, payoff.
+- Codex-readable summary: world facts, characters, active style, pressure/debt signals.
+- Pending signals: candidate facts, audit reports, chapter issues.
+
+Behavior:
+
+- Drawer closes with Escape, close button, or outside interaction if no unsaved form exists.
+- Closing the drawer keeps the node selected but restores canvas width.
+- Drawer actions open dialogs layered above the canvas.
+
+### 4. Version Compare And Finalize Dialog
+
+Purpose: let the human choose which AI-generated candidate becomes the authoritative chapter version.
+
+Trigger:
+
+- Chapter drawer action.
+- Version node click.
+- Risk/action popover when candidate versions exist.
+
+Layout:
+
+- Dialog width: `min(1060px, 94vw)`.
+- Main area: two-column comparison.
+- Side area: candidate version list and local check summary.
+- Footer: final decision buttons.
+
+Visible information:
+
+- Current applied version text or summary.
+- Selected candidate text or summary.
+- Version metadata: source, status, word count, created time.
+- Local check level and suggested action.
+- Related candidate facts or audit warnings.
+
+Actions:
+
+- Apply candidate as main version.
+- Archive candidate.
+- Request AI rewrite.
+- Run local check.
+- Open Context Pack for the same chapter.
+
+Guardrails:
+
+- Applying a candidate with danger-level local checks requires confirmation.
+- Applying a candidate should create or reference a snapshot if the previous main version is being replaced.
+- The dialog must not become a full manual editor. Small text correction can be an exception path, not the primary surface.
+
+### 5. AI Task Creation Dialog
+
+Purpose: record an MCP-readable task package for external Codex or Claude Code.
+
+Trigger:
+
+- Floating project card primary action.
+- Canvas toolbar `Codex Task` action.
+- Chapter drawer rewrite action.
+
+Form sections:
+
+- Target: next chapter, next 10 chapters, next 50 chapters, next 100 chapters, rewrite chapter, style adjustment, style extraction, style process.
+- Target chapter when applicable.
+- Context mode: Lite, Full, Deep.
+- Review mode: token saver, balanced, strict.
+- Candidate fact strategy: optimistic, balanced, conservative.
+- Checkpoint interval.
+- Auto-pause rule: none, high risk, checkpoint, any issue.
+- Task title.
+- Instruction for external AI.
+
+Result:
+
+- Creates a task record.
+- Exposes an AI task package.
+- Adds a task node to the canvas.
+- Adds a write log entry.
+
+Copy tone:
+
+- The dialog should make clear that real generation happens in the external AI host through MCP.
+
+### 6. MCP Status Dialog
+
+Purpose: show detailed MCP readiness without making MCP the permanent main panel.
+
+Trigger:
+
+- Dock MCP button.
+- Toolbar MCP tab.
+- Status bar click.
+
+Sections:
+
+- External AI tasks: task title, target, status, task package action, mock complete action in current mock phase.
+- MCP-readable resources: URI, kind, item count, context mode.
+- Recent write-backs: kind, actor, summary, time.
+- Tool list summary if available.
+
+Status states:
+
+- `mock_ready`: tools/resources available in mock mode.
+- `connected`: future real MCP server connected.
+- `blocked`: MCP server or required project context missing.
+- `write_pending`: external AI has written candidate data that needs review.
+
+Design constraints:
+
+- Dense ledger rows, not large cards.
+- The first row should answer: can an external AI safely read/write this project right now?
+
+### 7. Context Pack Dialog
+
+Purpose: preview what the external AI will read before planning or writing.
+
+Trigger:
+
+- Chapter drawer.
+- Toolbar Context tab.
+- AI task package dialog.
+
+Layout:
+
+- Summary card for target chapter and token budget.
+- Constraint card for outline, locked facts, active style, and long-state pressure.
+- JSON/text preview with copy action.
+- Optional resource checklist showing what is included or excluded.
+
+Important fields:
+
+- Project.
+- Chapter.
+- Outline nodes.
+- Active style.
+- Enabled style assets.
+- Characters.
+- World facts.
+- Scene cards.
+- Local checks.
+- Long state.
+- Estimated token budget and hard limit.
+
+Behavior:
+
+- Changing Lite/Full/Deep updates included resource depth.
+- The preview is local and does not spend AI tokens.
+
+### 8. Outline And Long State Dialogs
+
+Purpose: expose planning and continuity state as AI context, not as a manual data chore.
+
+Outline dialog:
+
+- Full-book promise.
+- Volume goals.
+- Arc conflict.
+- Chapter goal/payoff.
+- Status badge per node.
+- Link from chapter outline node to real chapter when available.
+
+Long State dialog:
+
+- Threads.
+- Foreshadows.
+- Costs.
+- Plot debts.
+- Timeline.
+- Messages.
+- Pressures.
+- Dialogue profiles.
+
+Design:
+
+- Use ledger rows with compact metadata and status marks.
+- Allow editing later, but first implementation can prioritize viewing and writing back through existing mock APIs.
+
+### 9. Style And Dialogue Dialog
+
+Purpose: manage the style context that external AI should absorb.
+
+Sections:
+
+- Active style profile.
+- Style assets: project style, volume style, scene mode, character voice, dialogue sample, good sample, bad pattern, forbidden item.
+- Add/edit style asset form.
+- Character dialogue voice summary.
+
+Behavior:
+
+- Activating a style profile changes the context pack.
+- New style assets can come from user input or external AI write-back.
+- Disabled assets stay in the library but are excluded from active context.
+
+### 10. Audit And Risk Dialog
+
+Purpose: resolve confirmation gates created by local checks, candidate facts, and audit reports.
+
+Sections:
+
+- Pending candidate facts.
+- Local check records.
+- Audit reports.
+- Chapter issues.
+- Batch action for low/medium-risk facts.
+
+Decision types:
+
+- Accept candidate fact.
+- Reject candidate fact.
+- Resolve audit report.
+- Mark issue for Codex.
+- Request rewrite.
+
+Guardrails:
+
+- High-risk facts cannot be silently batch-settled.
+- Conflicting facts require explicit comparison and confirmation.
+- A danger-level audit state should block final version application unless the user explicitly overrides with confirmation and snapshot.
+
+### 11. Snapshots And Export Dialog
+
+Purpose: protect the project before state-changing confirmations and support handoff/export.
+
+Sections:
+
+- Snapshot list.
+- Snapshot create form.
+- Restore action.
+- Export project state JSON.
+- Import project state JSON.
+- Export manuscript text.
+
+Guardrails:
+
+- Restore requires a destructive confirmation.
+- Import should validate project payload before replacing local state.
+- Snapshot restore is a project-state action, not a visual-only undo.
+
+### 12. Status Bar
+
+Purpose: maintain passive MCP visibility with almost no vertical cost.
+
+Height:
+
+- 28 px.
+
+Content tokens:
+
+- Live dot.
+- MCP state.
+- Latest write-back kind and actor.
+- Context mode and estimated token count.
+- Pending high-risk count.
+- Optional current project id/title if space allows.
+
+Interactions:
+
+- Click opens MCP Status dialog.
+- Hover shows exact last updated time and latest write log summary.
+
+Design:
+
+- One line.
+- No wrapping at target viewport.
+- Truncate middle detail before shrinking critical status labels.
+
 ## Module Mapping
 
 The interface should map to current project modules and mock API surfaces:
