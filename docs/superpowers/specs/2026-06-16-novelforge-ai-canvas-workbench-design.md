@@ -184,8 +184,9 @@ Design constraints:
 Feature visibility rule:
 
 - The default canvas must not be a purely abstract node graph. It must also show core novel-planning information from the current project data model.
+- Screenshot references that show dense volume/chapter cards should be treated as **node content references only**, not as a requirement to turn the whole canvas into a column/list board.
 - Overall project progress is first-screen information: current chapter, target chapter count, total progress percent, queued AI tasks, pending confirmations, and recent write-back.
-- Volume nodes or lanes should show volume progress, core conflict, target, expected chapter count, and main progress percent.
+- Volume nodes should show volume progress, core conflict, target, expected chapter count, and main progress percent.
 - Chapter nodes should include enough body/planning information to recognize the story beat without opening a drawer:
   - scene or location
   - POV
@@ -195,7 +196,7 @@ Feature visibility rule:
   - short body excerpt, draft line, or writing target
 - Long-state highlights should be visible on the first screen when active: highest pressure value, nearest breakpoint, plot debt count, foreshadow count, and message/timeline warnings.
 - Style state should also be visible when active: active style profile, applied style assets, pending style extraction, and whether a style task is waiting for external AI write-back.
-- The first coded pass may choose either a free graph layout or a volume-lane layout, but it must preserve this information density.
+- The first coded pass should keep the free AI canvas layout with version, task, risk, and context nodes; the richer chapter information belongs inside the nodes and drawers.
 
 ### 2. Dock Expanded Flyout
 
