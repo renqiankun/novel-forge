@@ -120,7 +120,7 @@ Detail surfaces are not persistent layout columns.
 
 ### AI Task Flow
 
-1. User chooses a visible generation scope from the workbench: next chapter, next 10 chapters, or next 100 chapters.
+1. User chooses a visible generation scope from the workbench: next chapter, next 10 chapters, next 50 chapters, or next 100 chapters.
 2. The app creates an MCP-readable task package; it does not generate text itself and does not become an AI chat panel.
 3. App stores task policy: target, context mode, review mode, candidate fact strategy, checkpoint interval, and auto-pause rule.
 4. App exposes an MCP-readable task package.
@@ -134,6 +134,7 @@ Generation scopes:
 
 - Next chapter: AI writes or plans the immediate next chapter and returns candidate versions, checks, candidate facts, and chapter summary updates.
 - Next 10 chapters: AI primarily updates outline, chapter targets, continuity state, and optional candidate drafts; it must checkpoint before high-impact changes become authoritative.
+- Next 50 chapters: AI primarily updates volume-scale outline, midpoint turns, pressure curve, risk report, and checkpoint plan for medium-range drafting.
 - Next 100 chapters: AI primarily builds or revises macro-outline, volume arcs, foreshadow schedules, pressure curves, and risk reports; it should not overwrite chapter text by default.
 
 The workbench must make this clear in the first viewport through an AI progression control surface, not only inside a hidden dialog.
@@ -153,7 +154,7 @@ Queue list fields:
 
 - Priority/order.
 - Task title.
-- Target scope: next chapter, next 10 chapters, next 100 chapters, rewrite target, style target, or audit target.
+- Target scope: next chapter, next 10 chapters, next 50 chapters, next 100 chapters, rewrite target, style target, or audit target.
 - Status: draft, ready, queued, running, paused, write_pending, completed, archived.
 - Context mode and review mode.
 - Checkpoint rule.
@@ -240,6 +241,7 @@ Visible information:
 - Graph scope and module tabs in the toolbar.
 - Volume, chapter, version, AI task, and risk nodes in the canvas.
 - Latest MCP/write-back state in the status bar.
+- Explicit access to MCP details, task package queue, Context Pack, outline/volume, long-state, style, audit, snapshots/export, and chapter text reader.
 
 Primary actions:
 
@@ -275,9 +277,11 @@ Feature visibility rule:
 AI operation visibility rule:
 
 - The first viewport must expose how to ask AI to continue with the next chapter, next 10 chapters, or next 100 chapters.
+- The first viewport or AI progression dialog must also expose the current code-supported next 50 chapters target.
 - The first viewport must expose what the human must confirm before the project state changes.
 - The user should be able to see, without opening a drawer, whether the next likely action is generation, rewriting, version finalization, style confirmation, fact confirmation, or outline review.
 - Generation controls create task packages for external AI; confirmation controls apply or reject local state changes after AI writes back.
+- Core secondary modules from the existing project must be one click away from the workbench: MCP detail, Context Pack JSON preview, long-state ledger, audit/facts, snapshots, import/export, manuscript export, and chapter text reader.
 
 ### 2. Dock Expanded Flyout
 
@@ -324,6 +328,7 @@ Actions:
 - Open Context Pack.
 - Open rewrite conditions.
 - Open version compare/finalize.
+- Open chapter text reader / minor edit.
 - Run local check.
 
 Body sections:
@@ -338,6 +343,38 @@ Behavior:
 - Drawer closes with Escape, close button, or outside interaction if no unsaved form exists.
 - Closing the drawer keeps the node selected but restores canvas width.
 - Drawer actions open dialogs layered above the canvas.
+
+### 3a. Chapter Text Reader And Minor Edit Dialog
+
+Purpose: allow the user to inspect authoritative chapter text and make tiny corrections without turning the app into a primary manuscript editor.
+
+Trigger:
+
+- Chapter drawer action.
+- Version compare dialog.
+- Applied version node.
+
+Default mode:
+
+- Readable chapter text view.
+- Chapter metadata: applied version, source, latest local check, snapshot status, and Context Pack sync status.
+- Actions: enter minor edit, open version compare, request AI rewrite, copy text.
+
+Minor edit mode:
+
+- Intended only for typo, punctuation, name, wording, or very short sentence fixes.
+- Should show a concise edit boundary notice.
+- Saves as a minor-edit version or patch, not as an invisible mutation.
+- Creates a write log entry.
+- Updates future Context Pack inputs.
+- Preserves the previous authoritative text through snapshot or version history.
+
+Guardrails:
+
+- Large text changes should redirect to rewrite conditions.
+- Minor edit must not silently alter outline, facts, style profile, or long-state records.
+- If a minor edit touches locked facts, character relationship, pressure value, breakpoint, or plot outcome, the app should warn and suggest a rewrite or confirmation flow.
+- This is an exception path for practical cleanup, not the center of the product.
 
 ### 4. Version Compare And Finalize Dialog
 
@@ -390,7 +427,7 @@ Trigger:
 
 Form sections:
 
-- Target: next chapter, next 10 chapters, next 100 chapters, rewrite chapter, style adjustment, style extraction, style process.
+- Target: next chapter, next 10 chapters, next 50 chapters, next 100 chapters, rewrite chapter, style adjustment, style extraction, style process.
 - Target chapter when applicable.
 - Context mode: Lite, Full, Deep.
 - Review mode: token saver, balanced, strict.
@@ -404,6 +441,7 @@ Scope defaults:
 
 - Next chapter defaults to candidate text, chapter summary, and local check.
 - Next 10 chapters defaults to outline, chapter targets, continuity updates, candidate facts, and optional candidate text at checkpoint boundaries.
+- Next 50 chapters defaults to volume-scale outline, midpoint turns, pressure curve, checkpoint plan, and risk report.
 - Next 100 chapters defaults to macro-outline, volume arcs, pressure curve, foreshadow schedule, style constraints, and risk report.
 
 Result:
@@ -661,6 +699,7 @@ The interface should map to current project modules and mock API surfaces:
 - Task package: `AiTask`, `AiTaskPackage`, task queue order
 - Context Pack: `ChapterContextPack`
 - Versioning: `ChapterVersion`, `RewriteTask`, `LocalCheckResult`
+- Chapter text reader and minor edit: applied chapter text, minor-edit version or patch, write log, snapshot/version history
 - Outline: `OutlineNode`, `ProjectOutline`
 - Long state: threads, foreshadows, costs, debts, timeline, messages, pressures, dialogue profiles
 - Style: `StyleProfile`, `StyleAsset`, dialogue profiles
@@ -730,13 +769,16 @@ The existing `project-canvas/index.vue` already contains many of the right flows
 - Left navigation is a compact icon dock, not a wide text sidebar.
 - Project title and progress are visible in a floating card.
 - Next chapter, next 10 chapters, and next 100 chapters AI progression controls are visible without hunting through module pages.
+- Next 50 chapters is available as a supported task target.
 - The task package queue is visible from the first viewport and from the dock/toolbar.
 - Task packages can be reordered by drag handle or up/down controls, with blocking states preserved.
 - A pending human confirmation queue is visible in the first viewport.
 - Right details are absent until a node/action is selected.
 - MCP status is visible in a short bottom bar.
 - All project modules remain reachable from dock or toolbar tabs.
+- MCP details, Context Pack JSON preview, long-state ledger, audit/facts, snapshots/import/export, and manuscript export are explicitly reachable in the design.
 - Candidate versions can be compared and finalized without opening a full manuscript editor.
+- Users can open chapter text for reading and make tiny typo/punctuation/short wording fixes through a guarded minor-edit path.
 - Rewrite choices are typed as style, plot, dialogue, continuity, bridge, or local expression before task package creation.
 - Character style confirmation and whole-book style confirmation are separate visible decisions.
 - Current plot summary, outline preview, and volume view are reachable from the workbench.
