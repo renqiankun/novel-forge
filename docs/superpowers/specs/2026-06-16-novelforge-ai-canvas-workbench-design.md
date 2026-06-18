@@ -763,6 +763,38 @@ The existing `project-canvas/index.vue` already contains many of the right flows
 5. Route expanded MCP, Context Pack, Outline, Long State, Style, Audit, and Snapshot content through dialogs or query-driven panels.
 6. Preserve the passive-AI boundary: Electron records tasks and accepts MCP write-back, but does not become an AI chat client.
 
+### 2026-06-17 Freeze Points
+
+The current coded canvas direction is accepted as the implementation baseline for the next refactor pass.
+
+- Nodes with body text or candidate body text must expose a direct `查看正文` action on the node. The action opens the guarded chapter text reader / minor edit dialog; it does not turn the canvas into a manuscript editor.
+- Task, chapter, and outline nodes must not share the same detail content. Task nodes prioritize task package, MCP status, confirmation gates, and target chapter context. Chapter nodes prioritize Context Pack, body reader, rewrite, version finalization, and local checks. Book/volume/arc nodes prioritize range metrics, outline contract, long-state, and audit entry points.
+- Icon-only dock and floating canvas controls must keep hover tooltips. Long explanatory text belongs in drawers or dialogs, not in the persistent canvas chrome.
+- Vue Flow edges default to left/right handles with enough spacing between nodes. The canvas may expose fit/refresh controls as floating controls, but persistent panels on top of the canvas should collapse behind icon buttons.
+- Task package queue remains a first-class follow-up feature: users must be able to see and reorder queued task packages, while blocked/running/completed states keep their execution constraints.
+
+### Refactor Boundary
+
+The next code pass should preserve behavior while splitting the current canvas file into focused parts:
+
+- `CanvasFlow`: Vue Flow nodes, edges, node body actions, fit behavior, and flow-only styling.
+- `NodeDetailDrawer`: task/chapter/outline detail branching and drawer actions.
+- `ReaderDialog`, `VersionDialog`, `RewriteDialog`, `CheckResultDialog`: specialized chapter/version action surfaces.
+- `ProjectPanels`: MCP, task package, Context Pack, outline, long-state, style, audit, snapshot/export overlays. This can be split after the first component extraction if the file remains large.
+
+The refactor should not change the mock API contract, node layout semantics, or external-AI-first workflow.
+
+### Stage 3/4 Contract Slice
+
+- `AiWorkbench.taskQueue` is the canonical queue snapshot for the canvas and MCP-facing task pickup.
+- Task package ordering is persisted through `reorderAiTaskQueue`; local UI order is only an optimistic reflection.
+- `AiTaskPackage` exposes `queuePosition` and `queuePolicy` so Codex / Claude can explain why it picked a task and what it is allowed to write back.
+- External AI can read `novel_project_canvas_get`, `novel_ai_workbench_get`, `novel_ai_task_queue_get`, `novel_ai_task_package_get`, and `novel_pending_reviews_get`.
+- External AI can request `novel_ai_task_queue_reorder`, but queue reorder must not execute a task, apply a chapter version, settle candidate facts, or bypass pending review gates.
+- The next executable task is derived from queue order, task status, and pause/review policy. Completed and manually blocked tasks remain visible as history.
+- Electron main keeps MCP in placeholder mode for now, but `tool-routes.ts` maps every advertised tool to the intended mock/service method and flags the effect as `read`, `write`, or `dangerous`.
+- The future real MCP server should call through the route layer, not directly import renderer mock state. Renderer mock APIs are temporary behavior references until a SQLite/service implementation owns project state.
+
 ## Acceptance Checklist
 
 - At 1400 x 750, the canvas is the dominant surface.

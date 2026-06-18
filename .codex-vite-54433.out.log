@@ -1,0 +1,49 @@
+
+> novel-forge-desktop@0.0.0 dev E:\devTest\1ai\noval-project\code\apps\desktop
+> cross-env NODE_ENV=development vite "--" "--host" "127.0.0.1" "--port" "54433"
+
+
+  [32m[1mVITE[22m v7.3.2[39m  [2mready in [0m[1m2195[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8800[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+  ➜  Vue DevTools: Open http://localhost:8800/__devtools__/ as a separate window
+  ➜  Vue DevTools: Press Alt(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools
+[36mvite v7.3.2 [32mbuilding client environment for development...[36m[39m
+[36m
+watching for file changes...[39m
+[36mvite v7.3.2 [32mbuilding client environment for development...[36m[39m
+[36m
+watching for file changes...[39m
+[36m
+build started...[39m
+[36m
+build started...[39m
+transforming...
+transforming...
+[32m✓[39m 10 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.02 kB[22m[1m[22m[2m │ gzip: 1.06 kB[22m
+[36mbuilt in 7295ms.[39m
+[32m✓[39m 38 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m152.96 kB[22m[1m[22m[2m │ gzip: 27.33 kB[22m
+[36mbuilt in 9027ms.[39m
+
+16:15:18.968 > NovelForge main process starting
+16:15:19.067 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+16:15:19.082 > MCP placeholder ready with 54 tools / 54 routes
+[2m16:21:49[22m [36m[1m[vite][22m[39m [32mpackage.json changed, restarting server...[39m
+[36m
+build started...[39m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.02 kB[22m[1m[22m[2m │ gzip: 1.06 kB[22m
+[36mbuilt in 206ms.[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m152.96 kB[22m[1m[22m[2m │ gzip: 27.33 kB[22m
+[36mbuilt in 1368ms.[39m
+ ELIFECYCLE  Command failed with exit code 1.

@@ -10,11 +10,11 @@ import { APP_NAME, DB_CONFIG } from '../utils/constants'
 import { generateDirPath, getAppHand, getDirname } from '../utils'
 
 const __dirname = getDirname(import.meta.url)
-const dbPath = path.join(getAppHand(), APP_NAME, DB_CONFIG.dbFileName)
+export const dbPath = path.join(getAppHand(), APP_NAME, DB_CONFIG.dbFileName)
 
 generateDirPath(dbPath)
 
-const sqlite = new Database(dbPath, {
+export const sqlite = new Database(dbPath, {
   timeout: DB_CONFIG.timeout,
 })
 

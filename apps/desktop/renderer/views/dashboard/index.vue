@@ -3,8 +3,8 @@
     <header class="page-header">
       <div>
         <p class="eyebrow">Local Story Engine</p>
-        <h1>长篇小说推演工作台</h1>
-        <span>全局工作台只管理项目和系统连接；世界、角色、章节、审稿都进入具体小说项目后处理。</span>
+        <h1>长篇小说 MCP 工作台</h1>
+        <span>全局层只管理项目、MCP 连接和本地设置；正文、世界、角色、风格、审稿都进入具体小说项目后处理。</span>
       </div>
       <div class="header-actions">
         <el-button :icon="Plus" type="primary" @click="go('/projects')">新建小说项目</el-button>
@@ -12,7 +12,7 @@
       </div>
     </header>
 
-    <div class="summary-strip">
+    <div v-loading="loading" class="summary-strip">
       <div v-for="item in summaries" :key="item.label" class="summary-item">
         <span>{{ item.label }}</span>
         <strong>{{ item.value }}</strong>
@@ -20,35 +20,45 @@
     </div>
 
     <div class="workspace-grid">
-      <section class="panel project-panel">
+      <section class="panel">
         <div class="panel-head">
-          <h2>推荐入口</h2>
+          <h2>项目入口</h2>
           <span>Project First</span>
         </div>
         <div class="module-list">
           <button
-            v-for="item in entries"
-            :key="item.title"
+            v-for="item in projectEntries"
+            :key="item.project.id"
             class="module-row"
             type="button"
-            @click="go(item.path)"
+            @click="go(`/projects/${item.project.id}/mcp-status`)"
           >
             <div>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.description }}</p>
+              <h3>{{ item.project.title }}</h3>
+              <p>{{ item.project.description }}</p>
             </div>
-            <el-tag :type="item.type" effect="plain">{{ item.badge }}</el-tag>
+            <span class="plain-mark">{{ item.stats.chapters }} 章</span>
+          </button>
+          <button class="module-row" type="button" @click="go('/projects')">
+            <div>
+              <h3>管理全部小说项目</h3>
+              <p>创建、切换和验证多项目隔离。</p>
+            </div>
+            <span class="plain-mark">全局</span>
           </button>
         </div>
       </section>
 
-      <section class="panel flow-panel">
+      <section class="panel">
         <div class="panel-head">
-          <h2>结构原则</h2>
-          <span>v0.22</span>
+          <h2>工作原则</h2>
+          <span>AI-controller first</span>
         </div>
         <ol class="flow-list">
-          <li v-for="item in flow" :key="item">{{ item }}</li>
+          <li>Codex / Claude Code 通过未来 MCP 读取项目上下文。</li>
+          <li>正文生成、重写、下 10 章、下 100 章等发起动作在外部 AI 控制端完成。</li>
+          <li>App 负责状态可视化、版本对比、本地检查、高风险确认和导出。</li>
+          <li>低风险事实和提示尽量沉淀给 Context Pack，不变成人工确认负担。</li>
         </ol>
       </section>
     </div>
@@ -57,71 +67,72 @@
 
 <script setup lang="ts">
 import { Connection, Plus } from '@element-plus/icons-vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { novelApi, type ProjectDashboard } from '@/api'
 
 const router = useRouter()
+const loading = ref(false)
+const projectEntries = ref<ProjectDashboard[]>([])
 
-const summaries = [
-  { label: '桌面壳', value: 'Electron' },
-  { label: '本地库', value: 'SQLite' },
-  { label: 'AI 模式', value: 'MCP' },
-  { label: '数据边界', value: '按项目隔离' },
-]
-
-const entries = [
-  {
-    title: '小说项目',
-    description: '创建或选择一部小说，再进入该小说的世界事实库、角色关系、章节工作台。',
-    badge: '全局',
-    type: 'success' as const,
-    path: '/projects',
-  },
-  {
-    title: '示例长篇项目',
-    description: '查看项目内二级导航结构：总览、世界事实库、角色关系、章节、审稿。',
-    badge: '项目内',
-    type: 'info' as const,
-    path: '/projects/demo-long-novel/overview',
-  },
-  {
-    title: 'MCP 连接',
-    description: '配置外部 Codex / Claude Code 访问本地故事上下文的工具入口。',
-    badge: '系统',
-    type: 'warning' as const,
-    path: '/mcp',
-  },
-]
-
-const flow = [
-  '全局层只负责多小说项目列表、MCP 连接、本地设置和应用状态。',
-  '世界事实库、角色关系、章节和审稿必须绑定 projectId。',
-  '外部 AI Host 调用 MCP 工具时必须显式指定当前小说项目。',
-  '跨项目共享规则后续作为高级功能处理，默认不混用数据。',
-]
+const summaries = computed(() => {
+  const projects = projectEntries.value.length
+  const chapters = projectEntries.value.reduce((total, item) => total + item.stats.chapters, 0)
+  const pendingFacts = projectEntries.value.reduce((total, item) => total + item.stats.pendingFacts, 0)
+  const auditIssues = projectEntries.value.reduce((total, item) => total + item.stats.auditIssues, 0)
+  return [
+    { label: '本地项目', value: String(projects) },
+    { label: '章节记录', value: String(chapters) },
+    { label: '候选事实', value: String(pendingFacts) },
+    { label: '审稿风险', value: String(auditIssues) },
+  ]
+})
 
 const go = (path: string) => {
   router.push(path)
 }
+
+const loadDashboard = async () => {
+  loading.value = true
+  try {
+    const projects = await novelApi.listProjects()
+    projectEntries.value = await Promise.all(
+      projects.slice(0, 4).map((project) => novelApi.getProjectDashboard(project.id)),
+    )
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(loadDashboard)
 </script>
 
 <style lang="scss" scoped>
 .dashboard {
   min-height: 100%;
-  padding: 26px 28px 34px;
+  padding: 16px 22px 28px;
 }
 
 .page-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--bd-line);
+  gap: 18px;
+  min-height: 68px;
+  padding: 10px 12px;
+  border: 1px solid var(--bd-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  box-shadow: var(--sh-edge);
+
+  > div:first-child {
+    min-width: 0;
+  }
 }
 
 .eyebrow {
   margin: 0 0 6px;
-  color: #a95d2d;
+  color: var(--brand-copper);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.12em;
@@ -137,16 +148,19 @@ p {
 
 h1 {
   color: var(--t1);
-  font-size: 28px;
+  font-size: 23px;
   font-weight: 900;
 }
 
 .page-header span {
   display: block;
-  margin-top: 8px;
+  margin-top: 5px;
+  overflow: hidden;
   color: var(--t5);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .header-actions {
@@ -160,20 +174,21 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
-  margin: 18px 0;
+  margin: 10px 0;
   overflow: hidden;
   border: 1px solid var(--bd-line);
   border-radius: 8px;
-  background: var(--bd-line);
+  background: color-mix(in srgb, var(--bd-line) 82%, transparent);
+  box-shadow: var(--sh-edge);
 }
 
 .summary-item {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-height: 82px;
-  padding: 16px;
-  background: var(--glass-panel);
+  min-height: 58px;
+  padding: 10px 13px;
+  background: var(--surface-raised);
 
   span {
     color: var(--t5);
@@ -183,7 +198,7 @@ h1 {
 
   strong {
     color: var(--t1);
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 900;
   }
 }
@@ -191,14 +206,16 @@ h1 {
 .workspace-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
-  gap: 18px;
+  gap: 8px;
 }
 
 .panel {
   min-width: 0;
+  overflow: hidden;
   border: 1px solid var(--bd-line);
   border-radius: 8px;
-  background: var(--glass-panel);
+  background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+  box-shadow: var(--sh-edge);
 }
 
 .panel-head {
@@ -206,8 +223,10 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 16px 18px;
+  min-height: 40px;
+  padding: 9px 14px;
   border-bottom: 1px solid var(--bd-line);
+  background: color-mix(in srgb, var(--surface-field) 72%, transparent);
 
   h2 {
     color: var(--t1);
@@ -231,9 +250,9 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  min-height: 84px;
-  padding: 16px 18px;
+  gap: 14px;
+  min-height: 58px;
+  padding: 10px 14px;
   border: 0;
   border-bottom: 1px solid var(--bd-line);
   color: inherit;
@@ -243,6 +262,7 @@ h1 {
 
   &:hover {
     background: var(--glass-subtle);
+    box-shadow: inset 3px 0 0 var(--brand-moss);
   }
 
   &:last-child {
@@ -256,7 +276,7 @@ h1 {
   }
 
   p {
-    margin-top: 6px;
+    margin-top: 4px;
     color: var(--t5);
     font-size: 12px;
     font-weight: 600;
@@ -264,11 +284,17 @@ h1 {
   }
 }
 
+.plain-mark {
+  color: var(--t5);
+  font-size: 11px;
+  font-weight: 900;
+}
+
 .flow-list {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   margin: 0;
-  padding: 18px 18px 18px 38px;
+  padding: 12px 16px 14px 32px;
   color: var(--t3);
   font-size: 13px;
   font-weight: 700;

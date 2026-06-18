@@ -21,10 +21,10 @@ import sideBar from './side-bar/index.vue'
 .layout-wrap {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: var(--app-bg, #f4f1ea);
+  background: var(--bg, var(--app-bg, #f4f1ea));
   color: var(--t1);
 }
 
@@ -39,5 +39,6 @@ import sideBar from './side-bar/index.vue'
   min-width: 0;
   min-height: 0;
   overflow: auto;
+  overflow-x: hidden;
 }
 </style>

@@ -1,0 +1,545 @@
+
+> novel-forge-desktop@0.0.0 dev E:\devTest\1ai\noval-project\code\apps\desktop
+> cross-env NODE_ENV=development vite "--" "--host" "127.0.0.1" "--port" "8800"
+
+
+  [32m[1mVITE[22m v7.3.2[39m  [2mready in [0m[1m3533[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8800[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+  ➜  Vue DevTools: Open http://localhost:8800/__devtools__/ as a separate window
+  ➜  Vue DevTools: Press Alt(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools
+[36mvite v7.3.2 [32mbuilding client environment for development...[36m[39m
+[36m
+watching for file changes...[39m
+[36mvite v7.3.2 [32mbuilding client environment for development...[36m[39m
+[36m
+watching for file changes...[39m
+[36m
+build started...[39m
+[36m
+build started...[39m
+transforming...
+transforming...
+[32m✓[39m 9 modules transformed.
+[32m✓[39m 15 modules transformed.
+rendering chunks...
+rendering chunks...
+computing gzip size...
+computing gzip size...
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m2.89 kB[22m[1m[22m[2m │ gzip: 1.02 kB[22m
+[36mbuilt in 5216ms.[39m
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m26.67 kB[22m[1m[22m[2m │ gzip: 6.08 kB[22m
+[36mbuilt in 5222ms.[39m
+
+08:46:08.527 > NovelForge main process starting
+08:46:08.537 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+08:46:08.539 > MCP placeholder ready with 27 tools / 27 routes
+[2m08:52:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m08:53:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m08:53:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m08:53:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m08:54:00[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m08:54:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue?vue&type=style&index=0&scoped=fe637b10&lang.scss, /renderer/theme/tailwind.css[22m
+[2m08:54:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue?vue&type=style&index=0&scoped=fe637b10&lang.scss, /renderer/theme/tailwind.css[22m
+[2m08:59:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/common.scss[22m
+[2m09:02:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:02:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:03:02[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:03:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:03:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:04:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/theme/tailwind.css[22m
+[2m09:16:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:25:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:25:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:25:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:25:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/theme/tailwind.css[22m
+[2m09:27:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css, /renderer/views/project-canvas/index.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/VersionDialog.vue[22m
+[2m09:27:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:27:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/theme/tailwind.css[22m
+[2m09:28:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/WorkbenchPanel.vue, /renderer/theme/tailwind.css[22m
+[2m09:28:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/RewriteDialog.vue, /renderer/theme/tailwind.css[22m
+[2m09:28:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mrenderer/router/index.ts[22m
+[2m09:28:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:29:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css, /renderer/views/project-canvas/index.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/VersionDialog.vue[22m
+[2m09:30:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:30:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:33:00[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:34:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:36:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:36:32[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:36:44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:37:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:37:24[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m09:39:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:39:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/WorkbenchPanel.vue, /renderer/theme/tailwind.css[22m
+[2m09:39:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/components/WorkbenchPanel.vue?vue&type=style&index=0&scoped=d75702f3&lang.scss, /renderer/theme/tailwind.css[22m
+[2m09:40:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:41:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:54:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.00 kB[22m[1m[22m[2m │ gzip: 1.06 kB[22m
+[36mbuilt in 266ms.[39m
+
+[2m09:54:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 3 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m47.31 kB[22m[1m[22m[2m │ gzip: 10.98 kB[22m
+[36mbuilt in 406ms.[39m
+
+09:54:54.821 > NovelForge main process starting
+09:54:54.829 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+09:54:54.830 > MCP placeholder ready with 27 tools / 27 routes
+[2m09:55:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m47.37 kB[22m[1m[22m[2m │ gzip: 10.99 kB[22m
+[36mbuilt in 240ms.[39m
+
+09:55:11.493 > NovelForge main process starting
+09:55:11.498 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+09:55:11.500 > MCP placeholder ready with 27 tools / 27 routes
+[2m09:55:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:55:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:56:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:56:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m09:56:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m47.37 kB[22m[1m[22m[2m │ gzip: 10.97 kB[22m
+[36mbuilt in 197ms.[39m
+
+09:56:23.498 > NovelForge main process starting
+09:56:23.506 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+09:56:23.508 > MCP placeholder ready with 27 tools / 27 routes
+[2m09:56:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m47.43 kB[22m[1m[22m[2m │ gzip: 10.98 kB[22m
+[36mbuilt in 219ms.[39m
+
+09:56:58.858 > NovelForge main process starting
+09:56:58.867 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+09:56:58.868 > MCP placeholder ready with 27 tools / 27 routes
+[2m09:57:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[2m09:58:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/layout/global-status-bar/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:16:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m48.65 kB[22m[1m[22m[2m │ gzip: 11.19 kB[22m
+[36mbuilt in 261ms.[39m
+
+10:16:47.938 > NovelForge main process starting
+10:16:48.017 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:16:48.019 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:16:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m48.65 kB[22m[1m[22m[2m │ gzip: 11.19 kB[22m
+[36mbuilt in 427ms.[39m
+
+10:16:52.356 > NovelForge main process starting
+10:16:52.365 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:16:52.367 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:18:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.13 kB[22m[1m[22m[2m │ gzip: 1.09 kB[22m
+[36mbuilt in 81ms.[39m
+
+10:18:38.158 > NovelForge main process starting
+10:18:38.168 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:18:38.170 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:18:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 2 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m56.82 kB[22m[1m[22m[2m │ gzip: 13.00 kB[22m
+[36mbuilt in 178ms.[39m
+
+10:18:48.423 > NovelForge main process starting
+10:18:48.430 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:18:48.432 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:19:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m58.96 kB[22m[1m[22m[2m │ gzip: 13.42 kB[22m
+[36mbuilt in 176ms.[39m
+
+10:19:03.161 > NovelForge main process starting
+10:19:03.168 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:19:03.169 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:19:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m59.04 kB[22m[1m[22m[2m │ gzip: 13.44 kB[22m
+[36mbuilt in 220ms.[39m
+
+10:19:12.189 > NovelForge main process starting
+10:19:12.196 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:19:12.198 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:19:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:19:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:19:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:20:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/module/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:20:46[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/module/index.vue?vue&type=style&index=0&scoped=33f9cf0b&lang.scss, /renderer/theme/tailwind.css[22m
+[2m10:20:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m59.04 kB[22m[1m[22m[2m │ gzip: 13.44 kB[22m
+[36mbuilt in 185ms.[39m
+
+10:20:56.937 > NovelForge main process starting
+10:20:56.947 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:20:56.949 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:21:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m59.04 kB[22m[1m[22m[2m │ gzip: 13.44 kB[22m
+[36mbuilt in 160ms.[39m
+
+10:21:32.327 > NovelForge main process starting
+10:21:32.336 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:21:32.337 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:23:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/layout/global-status-bar/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:30:04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m59.06 kB[22m[1m[22m[2m │ gzip: 13.44 kB[22m
+[36mbuilt in 188ms.[39m
+
+10:30:06.196 > NovelForge main process starting
+10:30:06.201 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:30:06.203 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:30:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.15 kB[22m[1m[22m[2m │ gzip: 1.10 kB[22m
+[36mbuilt in 89ms.[39m
+
+10:30:16.219 > NovelForge main process starting
+10:30:16.225 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:30:16.226 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:34:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 2 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m98.47 kB[22m[1m[22m[2m │ gzip: 21.23 kB[22m
+[36mbuilt in 297ms.[39m
+
+10:34:28.722 > NovelForge main process starting
+10:34:28.733 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:34:28.734 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:34:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m102.26 kB[22m[1m[22m[2m │ gzip: 21.70 kB[22m
+[36mbuilt in 194ms.[39m
+
+10:34:52.547 > NovelForge main process starting
+10:34:52.555 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:34:52.556 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:35:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:35:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:40:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/module/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:40:36[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/projects/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:40:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:41:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mrenderer/router/index.ts[22m
+[2m10:41:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m10:41:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[2m10:42:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:43:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m10:55:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m102.74 kB[22m[1m[22m[2m │ gzip: 21.74 kB[22m
+[36mbuilt in 306ms.[39m
+
+10:55:43.164 > NovelForge main process starting
+10:55:43.172 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:55:43.173 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:56:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m103.11 kB[22m[1m[22m[2m │ gzip: 21.85 kB[22m
+[36mbuilt in 358ms.[39m
+
+10:56:09.857 > NovelForge main process starting
+10:56:09.863 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:56:09.865 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:56:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m104.77 kB[22m[1m[22m[2m │ gzip: 22.40 kB[22m
+[36mbuilt in 233ms.[39m
+
+10:56:43.682 > NovelForge main process starting
+10:56:43.689 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:56:43.691 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:57:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m104.89 kB[22m[1m[22m[2m │ gzip: 22.41 kB[22m
+[36mbuilt in 198ms.[39m
+
+10:57:02.316 > NovelForge main process starting
+10:57:02.323 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:57:02.325 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:57:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m104.89 kB[22m[1m[22m[2m │ gzip: 22.41 kB[22m
+[36mbuilt in 208ms.[39m
+
+10:57:30.054 > NovelForge main process starting
+10:57:30.061 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:57:30.062 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:58:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 0 modules transformed.
+
+10:58:53.560 > NovelForge main process starting
+10:58:53.569 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:58:53.570 > MCP placeholder ready with 27 tools / 27 routes
+[2m10:59:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 0 modules transformed.
+
+10:59:50.318 > NovelForge main process starting
+10:59:50.327 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+10:59:50.329 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:00:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 0 modules transformed.
+
+11:00:12.320 > NovelForge main process starting
+11:00:12.326 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:00:12.327 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:00:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 0 modules transformed.
+
+11:00:36.838 > NovelForge main process starting
+11:00:36.844 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:00:36.845 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:01:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m111.68 kB[22m[1m[22m[2m │ gzip: 23.63 kB[22m
+[36mbuilt in 196ms.[39m
+
+11:01:04.889 > NovelForge main process starting
+11:01:04.895 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:01:04.897 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:01:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m116.80 kB[22m[1m[22m[2m │ gzip: 25.14 kB[22m
+[36mbuilt in 187ms.[39m
+
+11:01:50.126 > NovelForge main process starting
+11:01:50.134 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:01:50.135 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:02:09[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m117.39 kB[22m[1m[22m[2m │ gzip: 25.26 kB[22m
+[36mbuilt in 375ms.[39m
+
+11:02:10.992 > NovelForge main process starting
+11:02:10.998 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:02:10.999 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:02:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m117.64 kB[22m[1m[22m[2m │ gzip: 25.30 kB[22m
+[36mbuilt in 233ms.[39m
+
+11:02:24.432 > NovelForge main process starting
+11:02:24.439 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:02:24.441 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m121.23 kB[22m[1m[22m[2m │ gzip: 26.25 kB[22m
+[36mbuilt in 235ms.[39m
+
+11:03:00.650 > NovelForge main process starting
+11:03:00.656 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:03:00.658 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:03:24[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m121.31 kB[22m[1m[22m[2m │ gzip: 26.29 kB[22m
+[36mbuilt in 325ms.[39m
+
+11:03:25.684 > NovelForge main process starting
+11:03:25.691 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:03:25.693 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:03:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m121.26 kB[22m[1m[22m[2m │ gzip: 26.30 kB[22m
+[36mbuilt in 265ms.[39m
+
+11:03:45.038 > NovelForge main process starting
+11:03:45.047 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:03:45.048 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:04:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m142.78 kB[22m[1m[22m[2m │ gzip: 30.32 kB[22m
+[36mbuilt in 216ms.[39m
+
+11:04:30.547 > NovelForge main process starting
+11:04:30.554 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:04:30.555 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:05:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m142.63 kB[22m[1m[22m[2m │ gzip: 30.28 kB[22m
+[36mbuilt in 338ms.[39m
+
+11:05:19.488 > NovelForge main process starting
+11:05:19.504 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:05:19.506 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:05:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 0 modules transformed.
+
+11:05:48.033 > NovelForge main process starting
+11:05:48.040 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:05:48.042 > MCP placeholder ready with 27 tools / 27 routes
+[36m
+build started...[39m
+[2m11:06:36[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m130.32 kB[22m[1m[22m[2m │ gzip: 27.69 kB[22m
+[36mbuilt in 757ms.[39m
+
+11:06:37.415 > NovelForge main process starting
+11:06:37.421 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:06:37.422 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:06:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m130.54 kB[22m[1m[22m[2m │ gzip: 27.76 kB[22m
+[36mbuilt in 257ms.[39m
+
+11:06:59.115 > NovelForge main process starting
+11:06:59.121 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:06:59.123 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:08:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m11:08:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m11:09:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.08 kB[22m[1m[22m[2m │ gzip: 27.24 kB[22m
+[36mbuilt in 328ms.[39m
+
+11:09:14.549 > NovelForge main process starting
+11:09:14.558 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:09:14.559 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:09:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/preload/[22m[36mindex.js  [39m[1m[2m3.11 kB[22m[1m[22m[2m │ gzip: 1.09 kB[22m
+[36mbuilt in 62ms.[39m
+
+11:09:32.182 > NovelForge main process starting
+11:09:32.189 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:09:32.190 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:10:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m11:10:36[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[2m11:11:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.08 kB[22m[1m[22m[2m │ gzip: 27.24 kB[22m
+[36mbuilt in 192ms.[39m
+
+11:11:40.514 > NovelForge main process starting
+11:11:40.552 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:11:40.553 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:11:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/dashboard/index.vue, /renderer/views/project/index.vue, /renderer/views/project-canvas/index.vue, /renderer/views/projects/index.vue, /renderer/views/module/index.vue, /renderer/views/style-library/index.vue, /renderer/theme/tailwind.css, /renderer/views/project-canvas/components/CanvasFlow.vue, /renderer/views/project-canvas/components/CheckResultDialog.vue, /renderer/views/project-canvas/components/CharacterRelationPanel.vue, /renderer/views/project-canvas/components/NodeDetailDrawer.vue, /renderer/views/project-canvas/components/ReaderDialog.vue, /renderer/views/project-canvas/components/VersionDialog.vue, /renderer/views/project-canvas/components/WorkbenchPanel.vue[22m
+[2m11:13:09[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.09 kB[22m[1m[22m[2m │ gzip: 27.23 kB[22m
+[36mbuilt in 452ms.[39m
+
+11:13:10.629 > NovelForge main process starting
+11:13:10.638 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:13:10.639 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:13:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.09 kB[22m[1m[22m[2m │ gzip: 27.23 kB[22m
+[36mbuilt in 184ms.[39m
+
+11:13:27.434 > NovelForge main process starting
+11:13:27.441 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:13:27.442 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:13:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/module/index.vue, /renderer/theme/tailwind.css[22m
+[2m11:13:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/views/project-canvas/index.vue, /renderer/theme/tailwind.css[22m
+[2m11:14:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[2m11:15:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.21 kB[22m[1m[22m[2m │ gzip: 27.21 kB[22m
+[36mbuilt in 469ms.[39m
+
+11:15:37.473 > NovelForge main process starting
+11:15:37.483 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:15:37.485 > MCP placeholder ready with 27 tools / 27 routes
+[2m11:15:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/renderer/theme/tailwind.css[22m
+[36m
+build started...[39m
+[32m✓[39m 1 modules transformed.
+[2mdist-electron/main/[22m[36mindex.js  [39m[1m[2m128.84 kB[22m[1m[22m[2m │ gzip: 27.36 kB[22m
+[36mbuilt in 273ms.[39m
+
+11:15:50.363 > NovelForge main process starting
+11:15:50.373 > SQLite connected: C:\Users\A\AppData\Roaming\NovelForge\novel-forge.dev.db
+11:15:50.375 > MCP placeholder ready with 27 tools / 27 routes

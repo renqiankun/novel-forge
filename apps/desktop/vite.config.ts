@@ -50,6 +50,7 @@ export default defineConfig(({ command }) => {
               alias: aliasPath,
             },
             build: {
+              minify: false,
               rollupOptions: {
                 input: {
                   index: path.resolve(__dirname, 'electron/preload/index.ts'),
@@ -72,9 +73,11 @@ export default defineConfig(({ command }) => {
             },
             plugins: [!isProduction && notBundle()],
             build: {
+              minify: false,
               rollupOptions: {
                 input: {
                   index: path.resolve(__dirname, 'electron/main/index.ts'),
+                  'mcp-stdio': path.resolve(__dirname, 'electron/main/mcp-stdio.ts'),
                 },
                 output: {
                   format: 'cjs',

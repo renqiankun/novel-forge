@@ -2,12 +2,13 @@
   <footer class="global-status-bar">
     <div class="status-left">
       <span class="status-dot"></span>
-      <span>本地 SQLite 已准备</span>
+      <span>本地项目状态已启用</span>
     </div>
     <span class="status-separator"></span>
     <div class="status-main">
-      <span>MCP 占位服务待实现</span>
+      <span>MCP 工具契约与执行器已接入</span>
       <span class="muted">Electron 不直接调用 AI API</span>
+      <span class="muted">正文文件目录可配置</span>
     </div>
   </footer>
 </template>
@@ -22,7 +23,8 @@
   padding: 0 12px;
   border-top: 1px solid var(--bd-panel);
   color: var(--t4);
-  background: color-mix(in srgb, var(--glass-panel) 82%, transparent);
+  background: color-mix(in srgb, var(--surface-raised) 86%, transparent);
+  box-shadow: 0 -1px 0 rgba(78, 55, 31, 0.03);
   font-size: 11px;
   font-weight: 700;
 }
@@ -43,8 +45,8 @@
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: #3f8d64;
-  box-shadow: 0 0 0 3px rgba(63, 141, 100, 0.13);
+  background: var(--brand-moss);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-moss) 18%, transparent);
 }
 
 .status-separator {

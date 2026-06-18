@@ -52,6 +52,11 @@ interface WindowControl {
   }>
 }
 
+interface QueryDbConfig {
+  path: string
+  params?: unknown
+}
+
 interface AppIpcBridge {
   invoke: <TChannel extends AppInvokeChannel>(
     channel: TChannel,
@@ -68,6 +73,7 @@ declare global {
     electronAPI?: {
       env: string
       fs: FsProxy
+      queryDB: <T = unknown>(config: QueryDbConfig) => Promise<T>
       ipc: AppIpcBridge
       update: AppUpdate
       logger: Logger

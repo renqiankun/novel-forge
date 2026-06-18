@@ -3,7 +3,7 @@
     <div class="nav-bar-left" @dblclick="toggleMaximize">
       <span class="app-mark"></span>
       <span class="app-name">NovelForge</span>
-      <span class="app-subtitle">本地长篇小说推演系统</span>
+      <span class="app-subtitle">本地长篇小说 MCP 状态工作台</span>
     </div>
     <div class="nav-actions">
       <el-button :icon="isDark ? Sunny : Moon" circle @click="toggleTheme" />
@@ -12,12 +12,7 @@
       <button class="window-control-btn" type="button" title="最小化" @click="minimize">
         <span class="minimize-icon"></span>
       </button>
-      <button
-        class="window-control-btn"
-        type="button"
-        :title="isMaximized ? '还原' : '最大化'"
-        @click="toggleMaximize"
-      >
+      <button class="window-control-btn" type="button" :title="isMaximized ? '还原' : '最大化'" @click="toggleMaximize">
         <span :class="isMaximized ? 'restore-icon' : 'maximize-icon'"></span>
       </button>
       <button class="window-control-btn close" type="button" title="关闭" @click="closeWindow">
@@ -64,14 +59,13 @@ onMounted(async () => {
   flex: 0 0 36px;
   height: 36px;
   border-bottom: 1px solid var(--bd-panel);
-  background: color-mix(in srgb, var(--glass-panel) 92%, transparent);
+  background: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+  box-shadow: var(--sh-edge);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  &.is-windows {
-    .nav-bar-left {
-      -webkit-app-region: drag;
-    }
+  &.is-windows .nav-bar-left {
+    -webkit-app-region: drag;
   }
 }
 
@@ -88,8 +82,8 @@ onMounted(async () => {
 .app-mark {
   width: 13px;
   height: 13px;
-  border: 2px solid #a95d2d;
-  border-left-color: #47745d;
+  border: 2px solid var(--brand-copper);
+  border-left-color: var(--brand-moss);
   transform: rotate(45deg);
 }
 

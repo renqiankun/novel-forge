@@ -1,187 +1,399 @@
 <template>
-  <section class="project-shell">
-    <header class="project-header">
-      <div>
-        <p class="eyebrow">Novel Project</p>
+  <section class="project-workbench">
+    <aside class="project-console">
+      <div class="console-head">
+        <span class="eyebrow">Novel Project</span>
         <h1>{{ projectTitle }}</h1>
-        <span>项目内数据默认隔离，世界事实库、角色关系、章节和审稿都绑定当前小说。</span>
+        <p>{{ projectSubtitle }}</p>
       </div>
-      <el-button :icon="Back" @click="backToProjects">返回项目列表</el-button>
-    </header>
 
-    <div class="project-body">
-      <aside class="project-nav">
+      <div class="project-picker">
+        <span>切换小说项目</span>
+        <el-select v-model="selectedProjectId" size="small" filterable @change="switchProject">
+          <el-option v-for="item in projects" :key="item.id" :label="item.title" :value="item.id" />
+        </el-select>
+      </div>
+
+      <div class="console-stats">
+        <div>
+          <strong>{{ canvasStats.chapters }}</strong>
+          <span>章节</span>
+        </div>
+        <div>
+          <strong>{{ canvasStats.tasks }}</strong>
+          <span>任务</span>
+        </div>
+        <div>
+          <strong>{{ canvasStats.pendingReviews }}</strong>
+          <span>待沉淀</span>
+        </div>
+      </div>
+
+      <nav class="console-menu" aria-label="项目画布功能">
         <button
-          v-for="item in projectNav"
-          :key="item.path"
-          class="project-nav-item"
-          :class="{ active: route.name === item.name }"
+          class="console-menu-item"
+          :class="{ active: !activePanel }"
           type="button"
-          @click="go(item.path)"
+          @click="openCanvas"
         >
-          <el-icon :size="16">
+          <el-icon><DataBoard /></el-icon>
+          <span>小说画布</span>
+        </button>
+        <button
+          v-for="item in panelItems"
+          :key="item.panel"
+          class="console-menu-item"
+          :class="{ active: activePanel === item.panel }"
+          type="button"
+          @click="openPanel(item.panel)"
+        >
+          <el-icon>
             <component :is="item.icon" />
           </el-icon>
           <span>{{ item.label }}</span>
         </button>
-      </aside>
+      </nav>
 
-      <main class="project-content">
-        <router-view />
-      </main>
-    </div>
+      <div class="console-actions">
+        <el-button type="primary" :icon="Plus" @click="openPanel('task-new')">记录 AI 任务包</el-button>
+        <el-button :icon="Refresh" @click="refreshCanvas">刷新画布</el-button>
+      </div>
+
+      <div class="console-note">
+        <strong>被动工作台</strong>
+        <span>App 不直接调用 AI。外部 AI 读取 MCP 状态，回填版本、风格、事实和任务结果。</span>
+      </div>
+
+      <el-button class="back-button" text :icon="Back" @click="backToProjects">返回项目列表</el-button>
+    </aside>
+
+    <main class="project-canvas-host">
+      <router-view />
+    </main>
   </section>
 </template>
 
 <script setup lang="ts">
 import {
   Back,
+  Box,
+  Collection,
+  Connection,
+  DataBoard,
+  DocumentChecked,
+  Download,
   Files,
-  Grid,
   Notebook,
-  User,
-  WarnTriangleFilled,
+  Plus,
+  Refresh,
+  Share,
+  TrendCharts,
 } from '@element-plus/icons-vue'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { novelApi, type NovelProject, type ProjectCanvas } from '@/api'
+
+type PanelKey =
+  | 'mcp-status'
+  | 'task-package'
+  | 'context-pack'
+  | 'outline'
+  | 'long-state'
+  | 'style-dialogue'
+  | 'audit'
+  | 'snapshots'
+  | 'export'
+  | 'task-new'
 
 const route = useRoute()
 const router = useRouter()
+const projects = ref<NovelProject[]>([])
+const project = ref<NovelProject | null>(null)
+const canvas = ref<ProjectCanvas | null>(null)
+const selectedProjectId = ref('')
 
 const projectId = computed(() => String(route.params.projectId ?? ''))
-const projectTitle = computed(() => (projectId.value === 'demo-long-novel' ? '示例长篇项目' : projectId.value))
+const activePanel = computed(() => String(route.query.panel ?? ''))
+const projectTitle = computed(() => project.value?.title || projectId.value)
+const projectSubtitle = computed(() =>
+  project.value
+    ? `${project.value.genre} / 当前第 ${project.value.currentChapter} 章 / 目标 ${project.value.targetChapters} 章`
+    : '项目状态按小说隔离，画布用于给外部 AI 控制端读取和回填。',
+)
+const canvasStats = computed(() => canvas.value?.stats ?? { volumes: 0, chapters: 0, tasks: 0, pendingReviews: 0, versions: 0 })
 
-const projectNav = computed(() => {
-  const prefix = `/projects/${projectId.value}`
-  return [
-    { path: `${prefix}/overview`, name: 'project-overview', label: '项目总览', icon: Grid },
-    { path: `${prefix}/world`, name: 'project-world', label: '世界事实库', icon: Notebook },
-    { path: `${prefix}/characters`, name: 'project-characters', label: '角色关系', icon: User },
-    { path: `${prefix}/chapters`, name: 'project-chapters', label: '章节工作台', icon: Files },
-    { path: `${prefix}/audit`, name: 'project-audit', label: '审稿校验', icon: WarnTriangleFilled },
-  ]
-})
+const panelItems: Array<{ panel: PanelKey; label: string; icon: object }> = [
+  { panel: 'mcp-status', label: 'MCP 状态', icon: Connection },
+  { panel: 'task-package', label: '任务包', icon: Share },
+  { panel: 'context-pack', label: '当前写作参考', icon: Collection },
+  { panel: 'outline', label: '完整大纲', icon: Files },
+  { panel: 'long-state', label: '长篇状态', icon: TrendCharts },
+  { panel: 'style-dialogue', label: '风格资产', icon: Notebook },
+  { panel: 'audit', label: '审稿检查', icon: DocumentChecked },
+  { panel: 'snapshots', label: '快照导入导出', icon: Box },
+  { panel: 'export', label: '正文导出', icon: Download },
+]
 
-const go = (path: string) => {
-  router.push(path)
+const navigateCanvas = (query?: Record<string, string>) => {
+  router.push({
+    name: 'project-canvas',
+    params: { projectId: projectId.value },
+    query,
+  })
 }
 
-const backToProjects = () => {
-  router.push('/projects')
+const openCanvas = () => navigateCanvas()
+const openPanel = (panel: PanelKey) => navigateCanvas({ panel })
+const backToProjects = () => router.push('/projects')
+
+const switchProject = (id: string | number | boolean | Record<string, unknown>) => {
+  if (typeof id !== 'string' || !id) return
+  router.push({ name: 'project-canvas', params: { projectId: id } })
 }
+
+const refreshCanvas = () => {
+  window.dispatchEvent(new CustomEvent('novel-forge:canvas-action', { detail: { action: 'refresh', projectId: projectId.value } }))
+}
+
+const loadShell = async () => {
+  projects.value = await novelApi.listProjects()
+  selectedProjectId.value = projectId.value
+  project.value = projects.value.find((item) => item.id === projectId.value) ?? null
+  canvas.value = projectId.value ? await novelApi.getProjectCanvas(projectId.value) : null
+}
+
+watch(projectId, loadShell)
+onMounted(loadShell)
 </script>
 
 <style lang="scss" scoped>
-.project-shell {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  padding: 22px 24px 28px;
+.project-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 32px 32px, color-mix(in srgb, var(--brand-copper) 8%, transparent), transparent 28%),
+    linear-gradient(135deg, var(--app-bg), var(--surface-sunken));
 }
 
-.project-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 4px 18px;
+.project-console {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding: 14px 9px;
+  border-right: 1px solid var(--bd-line);
+  background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+  box-shadow: 8px 0 30px color-mix(in srgb, var(--shadow-color) 12%, transparent);
+  overflow: hidden;
+}
+
+.console-head {
+  display: grid;
+  place-items: center;
+  padding: 0 0 7px;
   border-bottom: 1px solid var(--bd-line);
 
-  h1,
-  p,
-  span {
-    margin: 0;
+  .eyebrow {
+    display: none;
+    color: var(--brand-copper);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   h1 {
-    color: var(--t1);
-    font-size: 26px;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--brand-moss) 32%, var(--bd-line));
+    border-radius: 13px;
+    color: transparent;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--brand-moss) 96%, black), color-mix(in srgb, var(--brand-copper) 92%, black)),
+      var(--surface-raised);
     font-weight: 900;
+
+    &::before {
+      content: 'P';
+      color: var(--on-brand);
+      font-size: 19px;
+    }
+  }
+
+  p {
+    display: none;
+  }
+}
+
+.project-picker {
+  display: none;
+}
+
+.console-stats {
+  display: none;
+  overflow: hidden;
+  border: 1px solid var(--bd-line);
+  border-radius: 10px;
+  background: var(--surface-raised);
+  box-shadow: var(--sh-edge);
+
+  div {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    padding: 9px 7px;
+    border-right: 1px solid var(--bd-line);
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  strong {
+    color: var(--t1);
+    font-size: 19px;
+    line-height: 1;
   }
 
   span {
-    display: block;
-    margin-top: 8px;
+    overflow: hidden;
     color: var(--t5);
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
-.eyebrow {
-  margin-bottom: 6px;
-  color: #a95d2d;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.project-body {
-  display: grid;
-  grid-template-columns: 184px minmax(0, 1fr);
-  gap: 18px;
-  flex: 1;
-  min-height: 0;
-  padding-top: 18px;
-}
-
-.project-nav {
+.console-menu {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 4px;
   min-height: 0;
+  overflow-y: auto;
+  padding-right: 2px;
 }
 
-.project-nav-item {
+.console-menu-item {
   display: flex;
   align-items: center;
-  height: 36px;
-  gap: 9px;
-  padding: 0 11px;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  min-height: 40px;
+  padding: 0;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 12px;
   color: var(--t4);
   background: transparent;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 850;
   text-align: left;
   cursor: pointer;
 
+  span {
+    display: none;
+  }
+
   &:hover {
+    border-color: var(--bd-line);
     color: var(--t2);
-    background: var(--glass-subtle);
+    background: var(--surface-soft);
   }
 
   &.active {
-    color: #f8f4ec;
-    background: #365f4c;
-    box-shadow: 0 8px 18px rgba(54, 95, 76, 0.2);
+    color: var(--on-brand);
+    background: linear-gradient(135deg, var(--brand-moss), var(--brand-copper));
+    box-shadow: var(--sh-on);
   }
 }
 
-.project-content {
+.console-actions {
+  display: grid;
+  gap: 7px;
+
+  :deep(.el-button) {
+    justify-content: center;
+    width: 44px;
+    height: 36px;
+    margin-left: 0;
+    padding: 0;
+
+    span {
+      display: none;
+    }
+  }
+}
+
+.console-note {
+  display: none;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--brand-copper) 25%, var(--bd-line));
+  border-radius: 10px;
+  color: var(--t5);
+  background: color-mix(in srgb, var(--brand-copper) 8%, var(--surface-raised));
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.55;
+
+  strong {
+    color: var(--t2);
+    font-size: 12px;
+  }
+}
+
+.back-button {
+  justify-content: center;
+  width: 44px;
+  margin-top: auto;
+  margin-left: 0;
+
+  span {
+    display: none;
+  }
+}
+
+.project-canvas-host {
+  display: flex;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 980px) {
-  .project-header {
-    align-items: flex-start;
-    flex-direction: column;
+  .project-workbench {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .project-body {
-    grid-template-columns: 1fr;
+  .console-head,
+  .project-picker,
+  .console-stats,
+  .console-note,
+  .back-button {
+    display: none;
   }
 
-  .project-nav {
-    flex-direction: row;
-    overflow-x: auto;
+  .console-menu-item {
+    justify-content: center;
+    padding: 0;
+
+    span {
+      display: none;
+    }
   }
 
-  .project-nav-item {
-    flex: 0 0 auto;
+  .console-actions :deep(.el-button span) {
+    display: none;
   }
 }
 </style>

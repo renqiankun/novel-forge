@@ -12,6 +12,7 @@
         class="nav-item"
         :class="{ active: item.path === activePath }"
         type="button"
+        :aria-label="item.label"
         @click="go(item.path)"
       >
         <el-icon :size="16">
@@ -24,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { Collection, Connection, House, Setting } from '@element-plus/icons-vue'
+import { Collection, Connection, EditPen, House, Setting } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -34,6 +35,7 @@ const router = useRouter()
 const navItems = [
   { path: '/', label: '工作台', icon: House },
   { path: '/projects', label: '小说项目', icon: Collection },
+  { path: '/style-library', label: '风格资产库', icon: EditPen },
   { path: '/mcp', label: 'MCP 连接', icon: Connection },
   { path: '/settings', label: '本地设置', icon: Setting },
 ]
@@ -52,20 +54,28 @@ const go = (path: string) => {
 <style lang="scss" scoped>
 .layout-side-bar {
   display: flex;
-  flex: 0 0 176px;
+  flex: 0 0 166px;
   flex-direction: column;
   height: 100%;
   padding: 14px 10px;
   border-right: 1px solid var(--bd-panel);
-  background: color-mix(in srgb, var(--glass-panel) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  box-shadow: var(--sh-panel);
 }
 
 .brand-block {
-  padding: 4px 8px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 2px 8px 14px;
   border-bottom: 1px solid var(--bd-line);
 }
 
 .brand-title {
+  width: auto;
+  height: auto;
+  overflow: hidden;
   color: var(--t1);
   font-size: 15px;
   font-weight: 900;
@@ -73,10 +83,10 @@ const go = (path: string) => {
 }
 
 .brand-subtitle {
-  margin-top: 3px;
+  display: block;
   color: var(--t5);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -84,15 +94,16 @@ const go = (path: string) => {
 .nav-list {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 6px;
   padding-top: 12px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  height: 34px;
+  min-height: 38px;
   gap: 9px;
   padding: 0 10px;
   border: 1px solid transparent;
@@ -104,16 +115,24 @@ const go = (path: string) => {
   text-align: left;
   cursor: pointer;
 
+  span {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &:hover {
     color: var(--t2);
     background: var(--glass-subtle);
   }
 
   &.active {
-    color: #f8f4ec;
-    background: #365f4c;
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 18px rgba(54, 95, 76, 0.2);
+    color: var(--on-brand);
+    background: var(--brand-moss);
+    border-color: var(--glass-active-bd);
+    box-shadow: var(--sh-on);
   }
 }
 </style>

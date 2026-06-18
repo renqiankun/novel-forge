@@ -1,11 +1,8 @@
-// 全屏时
 :not(:root):fullscreen::backdrop {
-  // background: url('@/assets/imgs/layout-bg.png') no-repeat center;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(24, 46, 75, 1), rgba(6, 10, 19, 1) 100%);
+  background: var(--bg);
   background-size: cover;
 }
 
-/* ─── BASE ─── */
 *,
 *::before,
 *::after {
@@ -20,28 +17,26 @@ body,
 }
 
 body {
-  font-family: 'Noto Sans SC', 'DM Sans', system-ui, sans-serif;
+  margin: 0;
+  color: var(--t2);
+  font-family: 'Noto Sans SC', 'Microsoft YaHei UI', 'PingFang SC', system-ui, sans-serif;
   font-size: 13px;
   background:
-    radial-gradient(ellipse 900px 640px at 18% 0%, var(--bg-a) 0%, transparent 68%),
-    radial-gradient(ellipse 700px 500px at 85% 100%, var(--bg-b) 0%, transparent 65%),
-    radial-gradient(ellipse 500px 400px at 55% 42%, var(--bg-c) 0%, transparent 70%), var(--bg);
-  //  background:
-  //   radial-gradient(ellipse 42% 42% at 20% 8%, #BADAF888 0%, #BADAF800 100%),
-  //   radial-gradient(ellipse 50% 50% at 84% 10%, #B2D8FF66 0%, #B2D8FF00 100%),
-  //   linear-gradient(160deg, #DCE8F2 0%, #E6EFF7 35%, #DAEAF0 70%, #E2ECF5 100%);
-
-    background-attachment: fixed;
-  color: var(--t2);
+    radial-gradient(ellipse 900px 640px at 14% -8%, var(--bg-a) 0%, transparent 68%),
+    radial-gradient(ellipse 700px 500px at 88% 100%, var(--bg-b) 0%, transparent 66%),
+    radial-gradient(ellipse 520px 420px at 54% 42%, var(--bg-c) 0%, transparent 72%),
+    var(--bg);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
-
   transition:
     background 0.28s ease,
     color 0.18s ease;
 }
+
 input::placeholder {
-  font-family: 'Noto Sans SC', 'DM Sans', system-ui, sans-serif;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei UI', 'PingFang SC', system-ui, sans-serif;
 }
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -56,73 +51,70 @@ input::placeholder {
   background: transparent;
 }
 
-.el-input {
-  width: 100%;
-}
-.el-select {
-  width: 100%;
-}
-.el-date-editor {
-  --el-date-editor-width: 100%;
-  min-width: 0px;
-}
+.el-input,
+.el-select,
 .el-input-number {
   width: 100%;
+}
+
+.el-date-editor {
+  min-width: 0;
+  --el-date-editor-width: 100%;
 }
 
 .text1 {
   color: var(--t1);
 }
+
 .text2 {
   color: var(--t2);
 }
+
 .text3 {
   color: var(--t3);
 }
+
 .text4 {
   color: var(--t4);
 }
+
 .text5 {
   color: var(--t5);
 }
+
 .text6 {
   color: var(--t6);
 }
 
-.el-button {
-  &:not(.is-text, .is-plain, :disabled) {
-    &.el-button--primary {
-      background: linear-gradient(135deg, #1d56d4, #3b8ef3);
-      &:hover {
-        filter: brightness(1.08);
-      }
-      &:active {
-        filter: brightness(0.92);
-      }
-    }
-    &.el-button--success {
-      background: linear-gradient(135deg, #059669, #10b981);
-      &:hover {
-        filter: brightness(1.08);
-      }
-      &:active {
-        filter: brightness(0.92);
-      }
-    }
+.el-button:not(.is-text, .is-plain, :disabled).el-button--primary {
+  background: linear-gradient(135deg, var(--brand-moss), var(--brand-copper));
+  border-color: transparent;
+  color: var(--on-brand);
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    filter: brightness(0.94);
   }
 }
 
 .glass-card {
   background: var(--glass-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--bd-card);
+  border-radius: 8px;
   box-shadow: var(--sh-card);
-  border-radius: 12px;
-  transition: background 0.14s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+
   &.active {
-    background: var(--step-card-active-bg);
-    border-color: var(--step-card-active-bd);
+    background: var(--glass-active-bg);
+    border-color: var(--glass-active-bd);
     box-shadow: var(--sh-on);
   }
 }
@@ -132,57 +124,50 @@ input::placeholder {
   margin-bottom: 4px;
 }
 
-.mx-icon-placeholder {
-  & > .icon {
-    fill: currentColor;
-  }
+.mx-icon-placeholder > .icon {
+  fill: currentColor;
 }
 
-// 暗黑主题渐变
 ::view-transition-new(root),
 ::view-transition-old(root) {
-  /* 关闭默认动画，否则影响自定义动画的执行 */
   animation: none !important;
 }
 
-/*黑暗模式下，让旧节点的层级变高，否则会导致动画出不来*/
 .dark::view-transition-old(root) {
   z-index: 100;
 }
 
-
 .el-dialog {
   display: flex;
   flex-direction: column;
-  // margin: 0 !important;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%); /*height:600px;*/
   max-height: calc(100% - 30px);
   max-width: calc(100% - 3px);
 }
+
 .el-dialog .el-dialog__body {
   flex: 1;
   overflow: auto;
 }
-@keyframes model-in {
-  0% {
-    opacity: 0;
-    transform: translateY(calc(-50% - 20px));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-50%);
-  }
+
+.el-empty {
+  padding: 14px 0;
 }
-@keyframes model-out {
-  0% {
-    opacity: 1;
-    transform: translateY(-50%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(calc(-50% - 20px));
-  }
+
+.el-empty__image {
+  display: none;
+}
+
+.el-empty__description {
+  margin-top: 0;
+}
+
+.el-empty__description p {
+  color: var(--t5);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.el-empty__bottom {
+  margin-top: 8px;
 }

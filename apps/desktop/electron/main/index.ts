@@ -25,6 +25,12 @@ const showMainWindow = () => {
   mainWindow.focus()
 }
 
+const openDevToolsOnReady = (window: BrowserWindow) => {
+  window.webContents.once('did-finish-load', () => {
+    if (!window.isDestroyed()) window.webContents.openDevTools()
+  })
+}
+
 const createWindow = () => {
   const iconPath = path.join(rootDir, './assets/icon/tray.png')
 
@@ -46,6 +52,7 @@ const createWindow = () => {
   })
 
   if (process.env.VITE_DEV_SERVER_URL) {
+    openDevToolsOnReady(mainWindow)
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
     mainWindow.loadFile(path.resolve(electronDist, './index.html'))
@@ -71,7 +78,7 @@ if (!hasSingleInstanceLock) {
     logger.info('NovelForge main process starting')
     await dbInit()
     const mcp = createDesktopMcpPlaceholder()
-    logger.info(`MCP placeholder ready with ${mcp.tools.length} tools`)
+    logger.info(`MCP tool contracts ready with ${mcp.tools.length} tools / ${mcp.routes.length} routes`)
 
     registerAppIpcHandlers()
     registerWindowControls(() => mainWindow)

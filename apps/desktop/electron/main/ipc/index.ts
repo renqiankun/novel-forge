@@ -1,9 +1,6 @@
 import { app, ipcMain } from 'electron'
 
-import type {
-  AppInvokePayloadMap,
-  AppInvokeResultMap,
-} from '../../shared/ipc'
+import type { AppInvokePayloadMap, AppInvokeResultMap } from '../../shared/ipc'
 
 export const registerAppIpcHandlers = () => {
   ipcMain.handle(

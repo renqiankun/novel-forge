@@ -1,6 +1,7 @@
 import { app } from 'electron'
 import { randomUUID } from 'node:crypto'
 import { existsSync, mkdirSync } from 'node:fs'
+import os from 'node:os'
 import path, { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -8,9 +9,14 @@ import logger from '../logger'
 
 export const getUUID = (): string => randomUUID()
 
-export const getAppHand = () => app.getPath('appData')
+const fallbackAppDataPath = () => process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming')
 
-export const getUserDataPath = () => app.getPath('userData')
+const hasElectronAppPath = (value: unknown): value is { getPath: (name: string) => string } =>
+  Boolean(value && typeof value === 'object' && 'getPath' in value && typeof (value as { getPath?: unknown }).getPath === 'function')
+
+export const getAppHand = () => (hasElectronAppPath(app) ? app.getPath('appData') : fallbackAppDataPath())
+
+export const getUserDataPath = () => (hasElectronAppPath(app) ? app.getPath('userData') : path.join(fallbackAppDataPath(), 'NovelForge'))
 
 export const getResourcePath = () => process.resourcesPath
 

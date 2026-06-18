@@ -4,6 +4,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+import '@vue-flow/core/dist/style.css'
+import '@vue-flow/core/dist/theme-default.css'
 import '@/theme/element-theme.scss'
 import '@/theme/element-theme-dark.scss'
 import '@/theme/layout.scss'
